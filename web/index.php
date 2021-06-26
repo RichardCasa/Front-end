@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 
 <head>
     <title>Berry Much</title>
@@ -19,7 +19,7 @@
     <p></p>
     <div class=" w3l-login-form">
         <h2>Inicio de sesion</h2>
-        <form action="php/validarusuario.php" method="POST">
+        <form action="#" method="POST">
             <h1><img src="img/logo200x200.png"></h1>
             <div class=" w3l-form-group">
                 <label>Cédula:</label>
@@ -32,21 +32,40 @@
                 <label>Contraseña:</label>
                 <div class="group">
                     <i class="fas fa-unlock"></i>
-                    <input type="password" class="form-control" id="contra" name="contra" placeholder="Contraseña" required="required" />
+                    <input type="password" class="form-control" id="contra" name="contra" placeholder="Contraseña" required="required" />    
                 </div>
             </div>
             <!-- <div class="forgot">
                 <a href="#">¿Olvidó su contraseña?</a>
                 <p><input type="checkbox">Recordar contraseña</p>
             </div> -->
-            <button type="submit">Iniciar Secion</button>
+            <button type="submit" >Iniciar Secion</button>
         </form>
         <!-- <p class=" w3l-register-p">¿No tiene una cuenta?<a href="#" class="register"> Registrate</a></p> -->
+        <?php
+
+require "../php/db.php";
+
+ 
+$cedula = $_POST['cedula'];
+$contra = $_POST['contra'];
+$sql = "select * from clientes where id = '$cedula' " ;
+$r = mysqli_query($l, $sql);
+$n = mysqli_num_rows($r); 
+if($n==1){
+      header("hola.html");
+}else{
+      echo '<script language="javascript">alert("Error de autentificacion");window.location.href="index.html"</script>';
+     
+}
+mysqli_close($conn);
+?>
+
     </div>
     <footer>
         <!-- <p class="copyright-agileinfo"> &copy; 2018 Material Login Form. All Rights Reserved | Design by <a href="http://w3layouts.com">W3layouts</a></p> -->
     </footer>
-
+   
 </body>
 
 </html>
